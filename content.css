@@ -1,0 +1,678 @@
+/* HighlightAsk — content.css */
+
+/* ─── CSS Variables ─────────────────────────────────────────────────────── */
+:root {
+  --ha-accent: #7c6dfa;
+  --ha-accent-hover: #6b5de8;
+  --ha-radius: 12px;
+  --ha-radius-sm: 8px;
+  --ha-font: -apple-system, "Segoe UI", system-ui, sans-serif;
+  --ha-shadow: 0 8px 32px rgba(0, 0, 0, 0.18), 0 2px 8px rgba(0, 0, 0, 0.12);
+  --ha-shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.12);
+  --ha-transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --ha-bg: #ffffff;
+    --ha-bg-secondary: #f7f7f8;
+    --ha-bg-hover: #f0f0f5;
+    --ha-border: rgba(0, 0, 0, 0.1);
+    --ha-text: #1a1a2e;
+    --ha-text-muted: #6b7280;
+    --ha-text-subtle: #9ca3af;
+    --ha-card-bg: #f9f9fb;
+    --ha-card-q-bg: #eef0ff;
+    --ha-card-q-text: #4c46b6;
+    --ha-error-bg: #fff1f2;
+    --ha-error-text: #be123c;
+    --ha-code-bg: #f3f4f6;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ha-bg: #1e1e2e;
+    --ha-bg-secondary: #2a2a3e;
+    --ha-bg-hover: #303048;
+    --ha-border: rgba(255, 255, 255, 0.1);
+    --ha-text: #e8e8f0;
+    --ha-text-muted: #9b9bbd;
+    --ha-text-subtle: #6b6b8a;
+    --ha-card-bg: #252535;
+    --ha-card-q-bg: #2e2a5e;
+    --ha-card-q-text: #b4aaff;
+    --ha-error-bg: #3b1a1a;
+    --ha-error-text: #f87171;
+    --ha-code-bg: #1a1a2a;
+  }
+}
+
+/* Detect dark page themes (ChatGPT dark, Claude dark) */
+.dark, [data-theme="dark"] {
+  --ha-bg: #1e1e2e;
+  --ha-bg-secondary: #2a2a3e;
+  --ha-bg-hover: #303048;
+  --ha-border: rgba(255, 255, 255, 0.1);
+  --ha-text: #e8e8f0;
+  --ha-text-muted: #9b9bbd;
+  --ha-text-subtle: #6b6b8a;
+  --ha-card-bg: #252535;
+  --ha-card-q-bg: #2e2a5e;
+  --ha-card-q-text: #b4aaff;
+  --ha-error-bg: #3b1a1a;
+  --ha-error-text: #f87171;
+  --ha-code-bg: #1a1a2a;
+}
+
+/* ─── Shared Base ────────────────────────────────────────────────────────── */
+#ha-popover,
+#ha-sidebar {
+  font-family: var(--ha-font) !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  color: var(--ha-text) !important;
+  box-sizing: border-box !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+#ha-popover *,
+#ha-sidebar * {
+  box-sizing: border-box !important;
+}
+
+/* ─── Popover ────────────────────────────────────────────────────────────── */
+#ha-popover {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  background: var(--ha-bg) !important;
+  border: 1px solid var(--ha-border) !important;
+  border-radius: var(--ha-radius) !important;
+  box-shadow: var(--ha-shadow) !important;
+  padding: 12px !important;
+  width: 280px !important;
+  opacity: 0 !important;
+  transform: translateY(-4px) scale(0.97) !important;
+  transition: opacity 0.15s ease, transform 0.15s ease !important;
+  pointer-events: all !important;
+}
+
+#ha-popover.ha-pop-visible {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.ha-pop-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 8px !important;
+}
+
+.ha-pop-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: var(--ha-accent) !important;
+}
+
+.ha-pop-highlight {
+  font-size: 12px !important;
+  color: var(--ha-text-muted) !important;
+  margin-bottom: 10px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  font-style: italic !important;
+}
+
+.ha-pop-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 5px !important;
+}
+
+.ha-pop-custom {
+  margin-top: 6px !important;
+}
+
+.ha-pop-custom-actions {
+  display: flex !important;
+  gap: 6px !important;
+  justify-content: flex-end !important;
+  margin-top: 6px !important;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+.ha-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  border: none !important;
+  border-radius: var(--ha-radius-sm) !important;
+  padding: 7px 10px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  font-family: var(--ha-font) !important;
+  cursor: pointer !important;
+  transition: var(--ha-transition) !important;
+  white-space: nowrap !important;
+  text-align: left !important;
+  width: 100% !important;
+  justify-content: flex-start !important;
+}
+
+.ha-btn-sm {
+  padding: 5px 10px !important;
+  font-size: 12px !important;
+  width: auto !important;
+}
+
+.ha-btn-primary {
+  background: var(--ha-accent) !important;
+  color: #fff !important;
+}
+
+.ha-btn-primary:hover {
+  background: var(--ha-accent-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+.ha-btn-ghost {
+  background: var(--ha-bg-secondary) !important;
+  color: var(--ha-text) !important;
+  border: 1px solid var(--ha-border) !important;
+}
+
+.ha-btn-ghost:hover {
+  background: var(--ha-bg-hover) !important;
+}
+
+.ha-icon-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important;
+  height: 24px !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: 6px !important;
+  color: var(--ha-text-muted) !important;
+  cursor: pointer !important;
+  transition: var(--ha-transition) !important;
+  padding: 0 !important;
+  font-family: var(--ha-font) !important;
+}
+
+.ha-icon-btn:hover {
+  background: var(--ha-bg-hover) !important;
+  color: var(--ha-text) !important;
+}
+
+/* ─── Input ──────────────────────────────────────────────────────────────── */
+.ha-input {
+  width: 100% !important;
+  background: var(--ha-bg-secondary) !important;
+  border: 1px solid var(--ha-border) !important;
+  border-radius: var(--ha-radius-sm) !important;
+  padding: 7px 10px !important;
+  font-size: 12px !important;
+  font-family: var(--ha-font) !important;
+  color: var(--ha-text) !important;
+  outline: none !important;
+  transition: var(--ha-transition) !important;
+}
+
+.ha-input:focus {
+  border-color: var(--ha-accent) !important;
+  box-shadow: 0 0 0 2px rgba(124, 109, 250, 0.2) !important;
+}
+
+.ha-input::placeholder {
+  color: var(--ha-text-subtle) !important;
+}
+
+/* ─── Sidebar ────────────────────────────────────────────────────────────── */
+#ha-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 360px !important;
+  height: 100vh !important;
+  z-index: 2147483646 !important;
+  background: var(--ha-bg) !important;
+  border-left: 1px solid var(--ha-border) !important;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform: translateX(100%) !important;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow: hidden !important;
+}
+
+#ha-sidebar.ha-sb-open {
+  transform: translateX(0) !important;
+}
+
+.ha-sb-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 14px 16px !important;
+  border-bottom: 1px solid var(--ha-border) !important;
+  flex-shrink: 0 !important;
+  background: var(--ha-bg) !important;
+}
+
+.ha-sb-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: var(--ha-text) !important;
+  letter-spacing: -0.01em !important;
+}
+
+.ha-sb-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  background: var(--ha-accent) !important;
+  border-radius: 8px !important;
+  color: #fff !important;
+}
+
+.ha-sb-controls {
+  display: flex !important;
+  gap: 4px !important;
+}
+
+.ha-sb-body {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  padding: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.ha-sb-body::-webkit-scrollbar {
+  width: 4px !important;
+}
+
+.ha-sb-body::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.ha-sb-body::-webkit-scrollbar-thumb {
+  background: var(--ha-border) !important;
+  border-radius: 2px !important;
+}
+
+/* ─── Empty State ────────────────────────────────────────────────────────── */
+.ha-sb-empty {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 48px 24px !important;
+  gap: 12px !important;
+  color: var(--ha-text-muted) !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+.ha-sb-empty-icon {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 14px !important;
+  background: var(--ha-bg-secondary) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--ha-accent) !important;
+  margin-bottom: 4px !important;
+}
+
+.ha-sb-empty p {
+  margin: 0 !important;
+}
+
+.ha-sb-empty-sub {
+  color: var(--ha-text-subtle) !important;
+  font-size: 12px !important;
+}
+
+/* ─── Q&A Cards ──────────────────────────────────────────────────────────── */
+.ha-card {
+  background: var(--ha-card-bg) !important;
+  border: 1px solid var(--ha-border) !important;
+  border-radius: var(--ha-radius) !important;
+  overflow: hidden !important;
+  animation: ha-card-in 0.2s ease !important;
+}
+
+@keyframes ha-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ha-card-q {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+  padding: 10px 12px 8px !important;
+  background: var(--ha-card-q-bg) !important;
+}
+
+.ha-card-q-icon {
+  flex-shrink: 0 !important;
+  color: var(--ha-accent) !important;
+  margin-top: 1px !important;
+}
+
+.ha-card-q-text {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--ha-card-q-text) !important;
+  line-height: 1.4 !important;
+}
+
+.ha-card-ref {
+  font-size: 11px !important;
+  color: var(--ha-text-subtle) !important;
+  padding: 4px 12px 8px !important;
+  font-style: italic !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  border-bottom: 1px solid var(--ha-border) !important;
+}
+
+.ha-card-ans {
+  padding: 12px !important;
+  color: var(--ha-text) !important;
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+}
+
+.ha-card-ans-text p {
+  margin: 0 0 8px !important;
+}
+
+.ha-card-ans-text p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.ha-card-ans-text h2,
+.ha-card-ans-text h3,
+.ha-card-ans-text h4 {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  margin: 10px 0 4px !important;
+  color: var(--ha-text) !important;
+}
+
+.ha-card-ans-text ul {
+  margin: 6px 0 !important;
+  padding-left: 18px !important;
+}
+
+.ha-card-ans-text li {
+  margin-bottom: 3px !important;
+}
+
+.ha-card-ans-text strong {
+  font-weight: 700 !important;
+  color: var(--ha-text) !important;
+}
+
+/* ─── Code ───────────────────────────────────────────────────────────────── */
+.ha-code-block {
+  background: var(--ha-code-bg) !important;
+  border: 1px solid var(--ha-border) !important;
+  border-radius: 6px !important;
+  padding: 10px 12px !important;
+  overflow-x: auto !important;
+  font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace !important;
+  font-size: 11.5px !important;
+  line-height: 1.6 !important;
+  margin: 8px 0 !important;
+}
+
+.ha-inline-code {
+  background: var(--ha-code-bg) !important;
+  border: 1px solid var(--ha-border) !important;
+  border-radius: 4px !important;
+  padding: 1px 5px !important;
+  font-family: "SF Mono", "Fira Code", monospace !important;
+  font-size: 11px !important;
+}
+
+/* ─── Typing Indicator ───────────────────────────────────────────────────── */
+.ha-typing {
+  display: flex !important;
+  gap: 4px !important;
+  align-items: center !important;
+  padding: 4px 0 !important;
+}
+
+.ha-typing span {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background: var(--ha-accent) !important;
+  animation: ha-bounce 1.2s infinite !important;
+}
+
+.ha-typing span:nth-child(2) {
+  animation-delay: 0.15s !important;
+}
+
+.ha-typing span:nth-child(3) {
+  animation-delay: 0.3s !important;
+}
+
+@keyframes ha-bounce {
+  0%, 80%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* ─── Error & Misc ───────────────────────────────────────────────────────── */
+.ha-card-error {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 12px !important;
+  color: var(--ha-error-text) !important;
+  background: var(--ha-error-bg) !important;
+  border-radius: 6px !important;
+  padding: 8px 10px !important;
+}
+
+.ha-link-btn {
+  background: none !important;
+  border: none !important;
+  color: var(--ha-accent) !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  font-family: var(--ha-font) !important;
+  padding: 0 !important;
+  text-decoration: underline !important;
+}
+
+.ha-link-btn:hover {
+  opacity: 0.8 !important;
+}
+
+.ha-muted {
+  color: var(--ha-text-subtle) !important;
+  font-size: 12px !important;
+}
+
+/* ─── Scrollbar for popover ──────────────────────────────────────────────── */
+#ha-popover ::-webkit-scrollbar {
+  width: 3px !important;
+}
+
+/* ─── Model tag on card ref line ─────────────────────────────────────────── */
+.ha-card-model-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  margin-left: 6px !important;
+  padding: 1px 7px !important;
+  background: rgba(124, 109, 250, 0.12) !important;
+  border: 1px solid rgba(124, 109, 250, 0.2) !important;
+  border-radius: 20px !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  color: #b4aaff !important;
+  font-style: normal !important;
+  letter-spacing: 0.02em !important;
+  vertical-align: middle !important;
+}
+
+/* ─── Popup overlay (auto-submit mode) ──────────────────────────────────── */
+#ha-overlay {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important;
+  width: 100vw !important; height: 100vh !important;
+  z-index: 2147483647 !important;
+  background: rgba(10, 10, 20, 0.75) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  animation: ha-overlay-in 0.2s ease !important;
+}
+
+#ha-overlay.ha-overlay-exit {
+  animation: ha-overlay-out 0.35s ease forwards !important;
+}
+
+@keyframes ha-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes ha-overlay-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.ha-overlay-inner {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 32px 40px !important;
+  background: #1a1a2e !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5) !important;
+  animation: ha-overlay-card-in 0.25s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+
+@keyframes ha-overlay-card-in {
+  from { transform: scale(0.88) translateY(8px); opacity: 0; }
+  to   { transform: scale(1) translateY(0);      opacity: 1; }
+}
+
+.ha-overlay-logo {
+  width: 44px !important; height: 44px !important;
+  background: #7c6dfa !important; border-radius: 12px !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  margin-bottom: 4px !important;
+}
+
+.ha-overlay-text {
+  font-size: 15px !important; font-weight: 800 !important;
+  color: #fff !important; letter-spacing: -0.02em !important;
+}
+
+.ha-overlay-sub {
+  font-size: 12px !important; color: #9b9bbd !important; text-align: center !important;
+}
+
+.ha-overlay-dots {
+  margin-top: 6px !important;
+}
+
+#ha-overlay.ha-overlay-error .ha-overlay-inner {
+  border-color: rgba(248, 113, 113, 0.3) !important;
+}
+
+#ha-overlay.ha-overlay-error .ha-overlay-sub {
+  color: #f87171 !important;
+}
+
+/* ─── Sidebar popup status card ─────────────────────────────────────────── */
+.ha-card-popup-status {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+}
+
+.ha-popup-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.ha-popup-service-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  color: var(--ha-text) !important;
+}
+
+.ha-popup-logo {
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+.ha-popup-focus-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  background: var(--ha-bg-secondary) !important;
+  border: 1px solid var(--ha-border) !important;
+  border-radius: 6px !important;
+  padding: 5px 10px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  color: var(--ha-accent) !important;
+  cursor: pointer !important;
+  font-family: var(--ha-font) !important;
+  transition: var(--ha-transition) !important;
+  width: fit-content !important;
+}
+
+.ha-popup-focus-btn:hover {
+  background: var(--ha-bg-hover) !important;
+}
