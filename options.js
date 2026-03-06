@@ -1,4 +1,4 @@
-// HighlightAsk — options.js v2
+// Open Pluck — options.js v2
 
 const statusEl = document.getElementById("status");
 

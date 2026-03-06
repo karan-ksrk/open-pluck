@@ -1,4 +1,4 @@
-/* HighlightAsk — content.css */
+/* Open Pluck — content.css */
 
 /* ─── CSS Variables ─────────────────────────────────────────────────────── */
 :root {
@@ -51,7 +51,8 @@
 }
 
 /* Detect dark page themes (ChatGPT dark, Claude dark) */
-.dark, [data-theme="dark"] {
+.dark,
+[data-theme="dark"] {
   --ha-bg: #1e1e2e;
   --ha-bg-secondary: #2a2a3e;
   --ha-bg-hover: #303048;
@@ -95,7 +96,9 @@
   width: 280px !important;
   opacity: 0 !important;
   transform: translateY(-4px) scale(0.97) !important;
-  transition: opacity 0.15s ease, transform 0.15s ease !important;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease !important;
   pointer-events: all !important;
 }
 
@@ -490,7 +493,9 @@
 }
 
 @keyframes ha-bounce {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     transform: translateY(0);
     opacity: 0.4;
   }
@@ -558,8 +563,10 @@
 /* ─── Popup overlay (auto-submit mode) ──────────────────────────────────── */
 #ha-overlay {
   position: fixed !important;
-  top: 0 !important; left: 0 !important;
-  width: 100vw !important; height: 100vh !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
   z-index: 2147483647 !important;
   background: rgba(10, 10, 20, 0.75) !important;
   backdrop-filter: blur(6px) !important;
@@ -575,12 +582,20 @@
 }
 
 @keyframes ha-overlay-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes ha-overlay-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .ha-overlay-inner {
@@ -590,31 +605,45 @@
   gap: 10px !important;
   padding: 32px 40px !important;
   background: #1a1a2e !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 16px !important;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5) !important;
-  animation: ha-overlay-card-in 0.25s cubic-bezier(0.34,1.56,0.64,1) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5) !important;
+  animation: ha-overlay-card-in 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 
 @keyframes ha-overlay-card-in {
-  from { transform: scale(0.88) translateY(8px); opacity: 0; }
-  to   { transform: scale(1) translateY(0);      opacity: 1; }
+  from {
+    transform: scale(0.88) translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }
 
 .ha-overlay-logo {
-  width: 44px !important; height: 44px !important;
-  background: #7c6dfa !important; border-radius: 12px !important;
-  display: flex !important; align-items: center !important; justify-content: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  background: #7c6dfa !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   margin-bottom: 4px !important;
 }
 
 .ha-overlay-text {
-  font-size: 15px !important; font-weight: 800 !important;
-  color: #fff !important; letter-spacing: -0.02em !important;
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  letter-spacing: -0.02em !important;
 }
 
 .ha-overlay-sub {
-  font-size: 12px !important; color: #9b9bbd !important; text-align: center !important;
+  font-size: 12px !important;
+  color: #9b9bbd !important;
+  text-align: center !important;
 }
 
 .ha-overlay-dots {

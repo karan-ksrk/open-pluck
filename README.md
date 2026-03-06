@@ -1,4 +1,4 @@
-# HighlightAsk
+# Open Pluck
 
 A Chrome extension that lets you highlight any text in a ChatGPT or Claude.ai conversation and ask follow-up questions about it — without cluttering your main chat, breaking your flow, or wasting context window tokens.
 

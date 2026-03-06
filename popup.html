@@ -1,117 +1,259 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>HighlightAsk</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Open Pluck</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    body {
-      font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
-      background: #0f0f1a;
-      color: #e8e8f0;
-      width: 264px;
-      padding: 16px;
-      -webkit-font-smoothing: antialiased;
-    }
+      body {
+        font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+        background: #0f0f1a;
+        color: #e8e8f0;
+        width: 264px;
+        padding: 16px;
+        -webkit-font-smoothing: antialiased;
+      }
 
-    .header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .icon {
-      width: 38px; height: 38px; background: #7c6dfa; border-radius: 11px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    h1 { font-size: 15px; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
-    .tagline { font-size: 11px; color: #6b6b8a; margin-top: 1px; }
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .icon {
+        width: 38px;
+        height: 38px;
+        background: #7c6dfa;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      h1 {
+        font-size: 15px;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.02em;
+      }
+      .tagline {
+        font-size: 11px;
+        color: #6b6b8a;
+        margin-top: 1px;
+      }
 
-    .free-tag {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2);
-      border-radius: 6px; padding: 4px 9px; font-size: 11px; font-weight: 600;
-      color: #34d399; margin-bottom: 14px; width: 100%;
-    }
+      .free-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(52, 211, 153, 0.1);
+        border: 1px solid rgba(52, 211, 153, 0.2);
+        border-radius: 6px;
+        padding: 4px 9px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #34d399;
+        margin-bottom: 14px;
+        width: 100%;
+      }
 
-    .service-row {
-      display: flex; align-items: center; justify-content: space-between;
-      background: #1a1a2e; border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 9px; padding: 10px 13px; margin-bottom: 10px;
-    }
-    .service-info { display: flex; align-items: center; gap: 9px; }
-    .service-logo {
-      width: 30px; height: 30px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 800;
-    }
-    .logo-chatgpt { background: rgba(25,195,125,0.15); color: #19c37d; }
-    .logo-claude  { background: rgba(205,137,93,0.15);  color: #cd895d; }
-    .service-name { font-size: 12px; font-weight: 600; color: #e8e8f0; }
-    .service-sub  { font-size: 10px; color: #6b6b8a; margin-top: 1px; }
-    .active-dot   { width: 7px; height: 7px; border-radius: 50%; background: #34d399; }
+      .service-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #1a1a2e;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 9px;
+        padding: 10px 13px;
+        margin-bottom: 10px;
+      }
+      .service-info {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .service-logo {
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 800;
+      }
+      .logo-chatgpt {
+        background: rgba(25, 195, 125, 0.15);
+        color: #19c37d;
+      }
+      .logo-claude {
+        background: rgba(205, 137, 93, 0.15);
+        color: #cd895d;
+      }
+      .service-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: #e8e8f0;
+      }
+      .service-sub {
+        font-size: 10px;
+        color: #6b6b8a;
+        margin-top: 1px;
+      }
+      .active-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #34d399;
+      }
 
-    .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 10px 0; }
+      .divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.06);
+        margin: 10px 0;
+      }
 
-    .actions { display: flex; flex-direction: column; gap: 6px; }
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
 
-    button {
-      display: flex; align-items: center; gap: 8px; width: 100%;
-      padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 500;
-      font-family: inherit; cursor: pointer; transition: all 0.15s; border: none; text-align: left;
-    }
+      button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.15s;
+        border: none;
+        text-align: left;
+      }
 
-    .btn-primary { background: #7c6dfa; color: #fff; }
-    .btn-primary:hover { background: #6b5de8; }
-    .btn-ghost { background: rgba(255,255,255,0.05); color: #c4c4d4; border: 1px solid rgba(255,255,255,0.08) !important; }
-    .btn-ghost:hover { background: rgba(255,255,255,0.09); }
+      .btn-primary {
+        background: #7c6dfa;
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #6b5de8;
+      }
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.05);
+        color: #c4c4d4;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.09);
+      }
 
-    .tip { font-size: 11px; color: #3a3a5a; text-align: center; line-height: 1.5; margin-top: 10px; }
-  </style>
-</head>
-<body>
-  <div class="header">
-    <div class="icon">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-      </svg>
-    </div>
-    <div>
-      <h1>HighlightAsk</h1>
-      <div class="tagline">Inline AI assistant</div>
-    </div>
-  </div>
-
-  <div class="free-tag">
-    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-    100% free — no API keys needed
-  </div>
-
-  <div class="service-row">
-    <div class="service-info">
-      <div class="service-logo" id="active-logo">⊕</div>
+      .tip {
+        font-size: 11px;
+        color: #3a3a5a;
+        text-align: center;
+        line-height: 1.5;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="icon">
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          stroke-width="2.5"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+      </div>
       <div>
-        <div class="service-name" id="active-name">ChatGPT</div>
-        <div class="service-sub">Active answer service</div>
+        <h1>Open Pluck</h1>
+        <div class="tagline">Inline AI assistant</div>
       </div>
     </div>
-    <div class="active-dot"></div>
-  </div>
 
-  <div class="actions">
-    <button class="btn-primary" id="open-settings">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
+    <div class="free-tag">
+      <svg
+        width="11"
+        height="11"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+        <polyline points="22 4 12 14.01 9 11.01" />
       </svg>
-      Settings
-    </button>
-    <button class="btn-ghost" id="open-site">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-      </svg>
-      <span id="open-site-label">Open ChatGPT</span>
-    </button>
-  </div>
+      100% free — no API keys needed
+    </div>
 
-  <div class="divider"></div>
-  <p class="tip">Highlight any text in an AI response to ask follow-up questions without interrupting your conversation.</p>
+    <div class="service-row">
+      <div class="service-info">
+        <div class="service-logo" id="active-logo">⊕</div>
+        <div>
+          <div class="service-name" id="active-name">ChatGPT</div>
+          <div class="service-sub">Active answer service</div>
+        </div>
+      </div>
+      <div class="active-dot"></div>
+    </div>
 
-  <script src="popup.js"></script>
-</body>
+    <div class="actions">
+      <button class="btn-primary" id="open-settings">
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"
+          />
+        </svg>
+        Settings
+      </button>
+      <button class="btn-ghost" id="open-site">
+        <svg
+          width="13"
+          height="13"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+          />
+        </svg>
+        <span id="open-site-label">Open ChatGPT</span>
+      </button>
+    </div>
+
+    <div class="divider"></div>
+    <p class="tip">
+      Highlight any text in an AI response to ask follow-up questions without
+      interrupting your conversation.
+    </p>
+
+    <script src="popup.js"></script>
+  </body>
 </html>

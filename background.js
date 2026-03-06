@@ -1,4 +1,4 @@
-// HighlightAsk — background.js
+// Open Pluck — background.js
 
 let haPopupWindowId = null;
 
@@ -10,7 +10,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     return;
   }
 
-  // Open (or reuse) a HighlightAsk chat popup window
+  // Open (or reuse) a Open Pluck chat popup window
   if (msg.type === "openChatPopup") {
     const { url } = msg;
 

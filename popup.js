@@ -1,4 +1,4 @@
-// HighlightAsk — popup.js v2
+// Open Pluck — popup.js v2
 
 chrome.storage.sync.get("answerService", ({ answerService }) => {
   const service = answerService || "chatgpt";

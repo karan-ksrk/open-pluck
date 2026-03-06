@@ -1,7 +1,7 @@
-// HighlightAsk — content.js v2 (free, no API keys)
+// Open Pluck — content.js v2 (free, no API keys)
 // Dual mode:
 //   1. SELECTION MODE  — normal browsing, detect highlight → show popover → open popup
-//   2. AUTO-SUBMIT MODE — runs inside HighlightAsk popup window, injects & submits question
+//   2. AUTO-SUBMIT MODE — runs inside Open Pluck popup window, injects & submits question
 
 (function () {
   "use strict";
@@ -9,7 +9,7 @@
   const IS_CHATGPT = location.hostname.includes("chatgpt.com") || location.hostname.includes("chat.openai.com");
   const IS_CLAUDE  = location.hostname.includes("claude.ai");
 
-  // ─── Detect if this tab is a HighlightAsk popup ───────────────────────────
+  // ─── Detect if this tab is a Open Pluck popup ───────────────────────────
   // We flag it via sessionStorage so it survives SPA navigation
   if (sessionStorage.getItem("ha_popup") === "1") {
     initAutoSubmitMode();
@@ -157,7 +157,7 @@
           <span class="ha-sb-icon">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </span>
-          HighlightAsk
+          Open Pluck
         </div>
         <div class="ha-sb-controls">
           <button class="ha-icon-btn" id="ha-sb-clear" title="Clear">
@@ -306,7 +306,7 @@
 
 
   // ─────────────────────────────────────────────────────────────────────────
-  // AUTO-SUBMIT MODE (runs inside the HighlightAsk popup window)
+  // AUTO-SUBMIT MODE (runs inside the Open Pluck popup window)
   // ─────────────────────────────────────────────────────────────────────────
   function initAutoSubmitMode() {
     // Show a subtle loading overlay while we wait for the page to load
@@ -318,7 +318,7 @@
         <div class="ha-overlay-logo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         </div>
-        <div class="ha-overlay-text">HighlightAsk</div>
+        <div class="ha-overlay-text">Open Pluck</div>
         <div class="ha-overlay-sub">Preparing your question…</div>
         <div class="ha-typing ha-overlay-dots"><span></span><span></span><span></span></div>
       </div>
