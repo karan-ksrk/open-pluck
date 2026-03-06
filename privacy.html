@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Pluck — Privacy Policy</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+        line-height: 1.7;
+        color: #333;
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 40px 24px 80px;
+      }
+      h1 { font-size: 1.75rem; margin-bottom: 8px; }
+      .updated { color: #666; font-size: 0.9rem; margin-bottom: 32px; }
+      h2 { font-size: 1.15rem; margin: 28px 0 12px; }
+      p { margin-bottom: 12px; }
+      ul { margin: 12px 0 12px 24px; }
+      li { margin-bottom: 6px; }
+      a { color: #7c6dfa; }
+    </style>
+  </head>
+  <body>
+    <h1>Open Pluck — Privacy Policy</h1>
+    <p class="updated">Last updated: March 2025</p>
+
+    <p>
+      Open Pluck is a Chrome extension that lets you highlight text in ChatGPT or Claude.ai
+      conversations and ask follow-up questions in a separate popup window. Your privacy
+      matters to us.
+    </p>
+
+    <h2>Data We Collect</h2>
+    <p><strong>We do not collect, store, or transmit any personal data.</strong></p>
+    <p>
+      The extension does not send any information to our servers or any third-party
+      servers. There are no analytics, no tracking, and no external API calls made by
+      the extension.
+    </p>
+
+    <h2>Local Storage</h2>
+    <p>
+      Open Pluck uses Chrome's <code>chrome.storage.local</code> API only to:
+    </p>
+    <ul>
+      <li>Store your selected AI service (ChatGPT or Claude.ai) as a preference</li>
+      <li>Temporarily pass your highlighted text and question to the popup window when you ask a follow-up</li>
+    </ul>
+    <p>
+      This data stays entirely on your device. It is never uploaded, shared, or
+      transmitted anywhere. The temporary question data is cleared after it is used
+      to submit your question to the AI service.
+    </p>
+
+    <h2>How Your Questions Are Submitted</h2>
+    <p>
+      When you ask a follow-up question, the extension opens a new browser window
+      to ChatGPT or Claude.ai and submits your question through the normal web
+      interface using your existing logged-in session. The extension does not use
+      any API keys or make requests on your behalf to external servers. All
+      communication goes directly between your browser and the AI service you
+      are already using.
+    </p>
+
+    <h2>Permissions</h2>
+    <p>We request the following permissions:</p>
+    <ul>
+      <li><strong>storage</strong> — To save your service preference and temporarily pass your question to the popup</li>
+      <li><strong>windows</strong> — To open the popup window where your question is answered</li>
+      <li><strong>tabs</strong> — To manage the popup window</li>
+      <li><strong>chatgpt.com, chat.openai.com, claude.ai</strong> — To inject the highlight popover and submit questions on these sites only</li>
+    </ul>
+    <p>
+      We do not access any other websites or your browsing history.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      If you have questions about this privacy policy, please open an issue on our
+      <a href="https://github.com/karan-ksrk/open-pluck" target="_blank" rel="noopener">GitHub repository</a>.
+    </p>
+  </body>
+</html>
