@@ -165,6 +165,21 @@
         line-height: 1.5;
         margin-top: 10px;
       }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+      .footer-links a {
+        font-size: 11px;
+        color: #6b6b8a;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .footer-links a:hover {
+        color: #c4c4d4;
+      }
     </style>
   </head>
   <body>
@@ -255,6 +270,10 @@
       Highlight any text in an AI response to ask follow-up questions without
       interrupting your conversation.
     </p>
+
+    <div class="footer-links">
+      <a href="#" id="open-privacy">Privacy policy</a>
+    </div>
 
     <script src="popup.js"></script>
   </body>
