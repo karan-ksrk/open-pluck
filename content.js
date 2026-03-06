@@ -60,7 +60,7 @@
     popoverEl.innerHTML = `
       <div class="ha-pop-header">
         <span class="ha-pop-label">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 8 6h8l3 14"/><path d="M7 16h10" stroke-width="2.5"/></svg>
           Ask about selection
         </span>
         <button class="ha-icon-btn ha-pop-close">
@@ -155,7 +155,7 @@
       <div class="ha-sb-header">
         <div class="ha-sb-title">
           <span class="ha-sb-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 8 6h8l3 14"/><path d="M7 16h10" stroke-width="2.5"/></svg>
           </span>
           Open Pluck
         </div>
@@ -316,7 +316,7 @@
     overlay.innerHTML = `
       <div class="ha-overlay-inner">
         <div class="ha-overlay-logo">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20 8 6h8l3 14"/><path d="M7 16h10" stroke-width="2.5"/></svg>
         </div>
         <div class="ha-overlay-text">Open Pluck</div>
         <div class="ha-overlay-sub">Preparing your question…</div>

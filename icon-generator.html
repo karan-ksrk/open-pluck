@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Open Pluck — Icon Generator</title>
+  <style>
+    body { font-family: system-ui; padding: 24px; background: #1a1a2e; color: #e8e8f0; }
+    h1 { font-size: 1.25rem; margin-bottom: 16px; }
+    .preview { display: flex; gap: 24px; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; }
+    .icon-box { text-align: center; }
+    .icon-box canvas { display: block; margin: 0 auto 8px; border-radius: 4px; }
+    .icon-box.size-16 canvas { width: 32px; height: 32px; image-rendering: pixelated; }
+    .icon-box.size-48 canvas { width: 48px; height: 48px; }
+    .icon-box.size-128 canvas { width: 128px; height: 128px; }
+    button { background: #7c6dfa; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; }
+    button:hover { background: #8b7cfb; }
+    p { font-size: 13px; color: #9b9bbd; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Open Pluck — Icon Generator</h1>
+  <p>Click each button to download the PNG. Replace the files in the <code>icons/</code> folder.</p>
+  <div class="preview">
+    <div class="icon-box size-16">
+      <canvas id="c16" width="16" height="16"></canvas>
+      <button onclick="download(16)">Download icon16.png</button>
+    </div>
+    <div class="icon-box size-48">
+      <canvas id="c48" width="48" height="48"></canvas>
+      <button onclick="download(48)">Download icon48.png</button>
+    </div>
+    <div class="icon-box size-128">
+      <canvas id="c128" width="128" height="128"></canvas>
+      <button onclick="download(128)">Download icon128.png</button>
+    </div>
+  </div>
+
+  <script>
+    function drawIcon(size) {
+      const canvas = document.getElementById('c' + size);
+      const ctx = canvas.getContext('2d');
+      const s = size / 24;
+      ctx.fillStyle = '#7c6dfa';
+      ctx.fillRect(0, 0, size, size);
+      ctx.strokeStyle = '#fff';
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 2.5 * s;
+      ctx.beginPath();
+      ctx.moveTo(5 * s, 20 * s);
+      ctx.lineTo(8 * s, 6 * s);
+      ctx.lineTo(16 * s, 6 * s);
+      ctx.lineTo(19 * s, 20 * s);
+      ctx.stroke();
+      ctx.lineWidth = 2.5 * s;
+      ctx.beginPath();
+      ctx.moveTo(7 * s, 16 * s);
+      ctx.lineTo(17 * s, 16 * s);
+      ctx.stroke();
+    }
+
+    function download(size) {
+      const canvas = document.getElementById('c' + size);
+      const link = document.createElement('a');
+      link.download = `icon${size}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    [16, 48, 128].forEach(drawIcon);
+  </script>
+</body>
+</html>
